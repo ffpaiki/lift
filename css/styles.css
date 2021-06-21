@@ -14,15 +14,18 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    width:150px;
+    height:40px;
+    margin:2px;
 }
 
 .lift{
     background:white;
     width: 40px;
-    height: 20px;
+    height: 40px;
     border: 1px solid teal;
     margin: 2px;
-    display: flex;
+    display: hidden;
     align-items: center;
     justify-content: center;
 }
@@ -37,9 +40,8 @@ body{
 .floor{
     background: white;
     border: 1px solid grey;
-    /* padding: 5px; */
     flex:1;
-    height: 20px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,21 +54,21 @@ body{
 
 .line{
     width: 2px;
-    height: 100vh;
+    height: 900px;
     position: absolute;
     background:teal;
 }
 
 .line1{
-    transform: translate(-225px);
+    transform: translate(-219px);
 }
 
 .line2{
-    transform: translate(-180px);
+    transform: translate(-172px);
 }
 
 .line3{
-    transform: translate(-135px);
+    transform: translate(-126px);
 }
 
 .selected{
