@@ -2,26 +2,25 @@ const building = document.querySelector(".building");
 
 init();
 
-function Lift() {
-  this.currentFloor = 1;
-  this.going = "up";
+function Elevator(index, currentFloor, html_id, x, y) {
+  this.currentFloor = currentFloor;
+  this.index = index;
+  this.id = html_id;
+  this.px = x;
+  this.py = y;
+  // this.going = "up";
 }
 
-let l1 = new Lift();
-let l2 = new Lift();
-let l3 = new Lift();
+let l1 = new Elevator(1, 20, "l1", -200, 8);
+let l2 = new Elevator(2, 20, "l2", -140, 8);
+let l3 = new Elevator(3, 20, "l3", -80, 8);
 
-const lifts = document.querySelectorAll(".lift.selected");
+let divSelectedElevator;
+let distance;
+
+const listElevator = [l1, l2, l3];
+
 const floor = document.querySelectorAll(".floor");
-
-// /***
-//  * Method to choose random lift when there are more than one lift
-//  * with the same distance to the requesting floor.
-//  */
-// function randomLift() {
-//   const t = Math.floor(Math.random() * 3);
-//   return t;
-// }
 
 /***
  * Method to initialize all floors and elevators during initialization
@@ -32,24 +31,60 @@ function init() {
     divFloorWrapper.classList.add("floor-wrapper");
 
     const divFloor = document.createElement("div");
+
     divFloor.classList.add("floor");
     divFloor.textContent = "Floor " + i;
+    divFloor.setAttribute("id", "f" + i);
+
+    const divFloorContainer = document.createElement("div");
+    divFloorContainer.classList.add("floor-container");
+    divFloorContainer.appendChild(divFloor);
+
+    divFloor.addEventListener("click", function (e) {
+      callingFloor = i;
+      console.log(i);
+      console.log(getNearestElevator(callingFloor));
+
+      selectedElevator = getNearestElevator(callingFloor);
+      divSelectedElevator = document.querySelector("#" + selectedElevator.id);
+
+      selectedElevator.currentFloor = callingFloor;
+      // const moveby = distance * 55;
+
+      selectedElevator.py = distance * 47;
+
+      divSelectedElevator.style.transform =
+        "translate(" +
+        selectedElevator.px +
+        ".px, " +
+        selectedElevator.py +
+        "px)";
+    });
 
     const divElevators = document.createElement("div");
     divElevators.classList.add("lifts");
-    divElevators.setAttribute("id", "f" + i);
 
     divFloorWrapper.appendChild(divElevators);
-    divFloorWrapper.appendChild(divFloor);
+    divFloorWrapper.appendChild(divFloorContainer);
 
     building.appendChild(divFloorWrapper);
   }
+}
 
-  for (let j = 0; j < 3; j++) {
-    const divElevators = document.querySelector("#f1");
-    const divElevator = document.createElement("div");
-    divElevator.classList.add("lift");
-    divElevator.setAttribute("id", "l" + (j + 1));
-    divElevators.appendChild(divElevator);
-  }
+function getNearestElevator(requestedFloor) {
+  let minDistance = 100,
+    minIndex;
+
+  listElevator.forEach(function (elevator, index) {
+    distance = elevator.currentFloor - requestedFloor;
+    console.log(
+      "requested floor: " + requestedFloor + " distance: " + distance
+    );
+    if (Math.abs(distance) < minDistance) {
+      minDistance = Math.abs(distance);
+      minIndex = index;
+    }
+  });
+
+  return listElevator[minIndex];
 }
