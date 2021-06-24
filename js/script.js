@@ -49,7 +49,6 @@ function init() {
       divSelectedElevator = document.querySelector("#" + selectedElevator.id);
 
       selectedElevator.currentFloor = callingFloor;
-      // const moveby = distance * 55;
 
       selectedElevator.py = distance * 47;
 
