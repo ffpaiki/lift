@@ -3,12 +3,13 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:0px;
 }
 
 .building{
     width:500px;
-    z-index: 1;
-    top:50%;
+    z-index: 1;margin:0px;
+    /* top:50%; */
 }
 
 .lift{
@@ -16,35 +17,37 @@ body{
     width: 40px;
     height: 40px;
     border: 1px solid teal;
-    margin: 5px;
+    margin: 0px;
     position: absolute;
     top:0;
     color: white;
 }
 
 .lift#l1{
-    transform:translate(-200px, 8px);
+    /* transform:translate(-200px, 0px); */
+    top:0px;
+    left:645px;
 }
 
 .lift#l2{
-    transform:translate(-140px, 8px);
+    /* transform:translate(-140px, 0px); */
+    top:0px;
+    left:705px;
 }
 
 .lift#l3{
-    transform:translate(-80px, 8px);
-}
-
-.floor-wrapper{
-    margin:2px;
-    margin-left: 200px;
+    /* transform:translate(-80px, 0px); */
+    top:0px;
+    left:765px;
 }
 
 .floor-container{
     position: relative;
+    left: 220px;
     width:150px;
     height: 40px;
-    border: 1px solid grey;
-    margin: 5px;   
+    border-bottom: 1px solid grey;
+    /* margin: 10px;    */
 }
 
 .floor{
@@ -55,13 +58,13 @@ body{
 }
 
 .floor-container:hover{
-    background:teal;
+    background:grey;
     color: white;
 }
 
 .line{
     width: 2px;
-    height: 900px;
+    height: 800px;
     position: absolute;
     background:teal;
 }
